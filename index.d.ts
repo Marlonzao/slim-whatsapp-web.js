@@ -589,8 +589,6 @@ declare namespace WAWebJS {
         acceptGroupV4Invite: () => Promise<{status: number}>,
         /** Deletes the message from the chat */
         delete: (everyone?: boolean) => Promise<void>,
-        /** Downloads and returns the attatched message media */
-        downloadMedia: () => Promise<MessageMedia>,
         /** Returns the Chat this message was sent in */
         getChat: () => Promise<Chat>,
         /** Returns the Contact this message was sent from */
@@ -676,8 +674,6 @@ declare namespace WAWebJS {
         mentions?: Contact[]
         /** Send 'seen' status */
         sendSeen?: boolean
-        /** Media to be sent */
-        media?: MessageMedia
         /** Extra options */
         extra?: any
         /** Sticker name, if sendMediaAsSticker is true */
@@ -694,30 +690,7 @@ declare namespace WAWebJS {
         reqOptions?: RequestInit
     }
 
-    /** Media attached to a message */
-    export class MessageMedia {
-        /** MIME type of the attachment */
-        mimetype: string
-        /** Base64-encoded data of the file */
-        data: string
-        /** Document file name. Value can be null */
-        filename?: string | null
-
-        /**
-         * @param {string} mimetype MIME type of the attachment
-         * @param {string} data Base64-encoded data of the file
-         * @param {?string} filename Document file name. Value can be null
-         */
-        constructor(mimetype: string, data: string, filename?: string | null)
-
-        /** Creates a MessageMedia instance from a local file path */
-        static fromFilePath: (filePath: string) => MessageMedia
-
-        /** Creates a MessageMedia instance from a URL */
-        static fromUrl: (url: string, options?: MediaFromURLOptions) => Promise<MessageMedia>
-    }
-
-    export type MessageContent = string | MessageMedia | Location | Contact | Contact[] | List | Buttons
+    export type MessageContent = string | Location | Contact | Contact[] | List | Buttons
 
     /**
      * Represents a Contact on WhatsApp
@@ -1188,7 +1161,7 @@ declare namespace WAWebJS {
     
     /** Message type buttons */
     export class Buttons {
-        body: string | MessageMedia
+        body: string 
         buttons: Array<Array<string>>
         title?: string | null
         footer?: string | null

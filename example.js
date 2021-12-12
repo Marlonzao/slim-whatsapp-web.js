@@ -128,15 +128,7 @@ client.on('message', async msg => {
             Platform: ${info.platform}
             WhatsApp version: ${info.phone.wa_version}
         `);
-    } else if (msg.body === '!mediainfo' && msg.hasMedia) {
-        const attachmentData = await msg.downloadMedia();
-        msg.reply(`
-            *Media info*
-            MimeType: ${attachmentData.mimetype}
-            Filename: ${attachmentData.filename}
-            Data (length): ${attachmentData.data.length}
-        `);
-    } else if (msg.body === '!quoteinfo' && msg.hasQuotedMsg) {
+    }  else if (msg.body === '!quoteinfo' && msg.hasQuotedMsg) {
         const quotedMsg = await msg.getQuotedMessage();
 
         quotedMsg.reply(`
@@ -146,12 +138,6 @@ client.on('message', async msg => {
             Timestamp: ${quotedMsg.timestamp}
             Has Media? ${quotedMsg.hasMedia}
         `);
-    } else if (msg.body === '!resendmedia' && msg.hasQuotedMsg) {
-        const quotedMsg = await msg.getQuotedMessage();
-        if (quotedMsg.hasMedia) {
-            const attachmentData = await quotedMsg.downloadMedia();
-            client.sendMessage(msg.from, attachmentData, { caption: 'Here\'s your requested media.' });
-        }
     } else if (msg.body === '!location') {
         msg.reply(new Location(37.422, -122.084, 'Googleplex\nGoogle Headquarters'));
     } else if (msg.location) {

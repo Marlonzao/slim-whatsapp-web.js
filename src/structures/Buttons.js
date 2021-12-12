@@ -1,6 +1,5 @@
 'use strict';
 
-const MessageMedia = require('./MessageMedia');
 const Util = require('../util/Util');
 
 /**
@@ -8,7 +7,7 @@ const Util = require('../util/Util');
  */
 class Buttons {
     /**
-     * @param {string|MessageMedia} body
+     * @param {string} body
      * @param {Array<Array<string>>} buttons
      * @param {string?} title
      * @param {string?} footer
@@ -16,7 +15,7 @@ class Buttons {
     constructor(body, buttons, title, footer) {
         /**
          * Message body
-         * @type {string|MessageMedia}
+         * @type {string}
          */
         this.body = body;
 
@@ -32,12 +31,7 @@ class Buttons {
          */
         this.footer = footer;
 
-        if (body instanceof MessageMedia) {
-            this.type = 'media';
-            this.title = '';
-        }else{
-            this.type = 'chat';
-        }
+        this.type = 'chat';
 
         /**
          * buttons of message
