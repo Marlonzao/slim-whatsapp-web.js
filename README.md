@@ -1,7 +1,7 @@
 
 # slim-whatsapp-web.js
-This is a fork of Whatsapp Web JS package by pedroslopez
-Made with the intent to be a stripped-down version of the souce package,
+This is a fork of whatsapp-web.js package by pedroslopez
+Made with the intent to be a stripped-down version of the source package,
 allowing only basic whatsapp functionality as sending and replying to messages. 
 
 **NOTE:** I can't guarantee you will not be blocked by using this method, although it has worked for me. WhatsApp does not allow bots or unofficial clients on their platform, so this shouldn't be considered totally safe.
@@ -15,7 +15,7 @@ allowing only basic whatsapp functionality as sending and replying to messages.
 
 ## Installation
 
-The module is now available on npm! `npm i whatsapp-web.js`
+The module is now available on npm! `npm i slim-whatsapp-web.js`
 
 Please note that Node v12+ is required.
 
@@ -34,7 +34,7 @@ Pull requests are welcome! Specially if there's something you would like to remo
 
 ## Donating
 
-You can support the maintainer of the souce project through the link below
+You can support the maintainer of the souce project through the button below
 
 [![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/psla/)
 
