@@ -91,7 +91,7 @@ class GroupNotification extends Base {
     /**
      * Sends a message to the same chat this GroupNotification was produced in.
      * 
-     * @param {string|MessageMedia|Location} content 
+     * @param {string|Location} content 
      * @param {object} options
      * @returns {Promise<Message>}
      */

@@ -11,7 +11,7 @@ const { WhatsWebURL, DefaultOptions, Events, WAState } = require('./util/Constan
 const { ExposeStore, LoadUtils } = require('./util/Injected');
 const ChatFactory = require('./factories/ChatFactory');
 const ContactFactory = require('./factories/ContactFactory');
-const { ClientInfo, Message, MessageMedia, Contact, Location, GroupNotification , Label, Call, Buttons, List} = require('./structures');
+const { ClientInfo, Message, Contact, Location, GroupNotification , Label, Call, Buttons, List} = require('./structures');
 /**
  * Starting point for interacting with the WhatsApp Web API
  * @extends {EventEmitter}
@@ -58,8 +58,6 @@ class Client extends EventEmitter {
 
         this.pupBrowser = null;
         this.pupPage = null;
-
-        Util.setFfmpegPath(this.options.ffmpegPath);
     }
 
     /**
@@ -492,13 +490,12 @@ class Client extends EventEmitter {
      * @property {string} [stickerAuthor=undefined] - Sets the author of the sticker, (if sendMediaAsSticker is true).
      * @property {string} [stickerName=undefined] - Sets the name of the sticker, (if sendMediaAsSticker is true).
      * @property {string[]} [stickerCategories=undefined] - Sets the categories of the sticker, (if sendMediaAsSticker is true). Provide emoji char array, can be null.
-     * @property {MessageMedia} [media] - Media to be sent
      */
 
     /**
      * Send a message to a specific chatId
      * @param {string} chatId
-     * @param {string|MessageMedia|Location|Contact|Array<Contact>|Buttons|List} content
+     * @param {string|Location|Contact|Array<Contact>|Buttons|List} content
      * @param {MessageSendOptions} [options] - Options used when sending the message
      * 
      * @returns {Promise<Message>} Message that was just sent
@@ -519,14 +516,7 @@ class Client extends EventEmitter {
 
         const sendSeen = typeof options.sendSeen === 'undefined' ? true : options.sendSeen;
 
-        if (content instanceof MessageMedia) {
-            internalOptions.attachment = content;
-            content = '';
-        } else if (options.media instanceof MessageMedia) {
-            internalOptions.attachment = options.media;
-            internalOptions.caption = content;
-            content = '';
-        } else if (content instanceof Location) {
+        if (content instanceof Location) {
             internalOptions.location = content;
             content = '';
         } else if(content instanceof Contact) {
@@ -542,15 +532,6 @@ class Client extends EventEmitter {
         } else if(content instanceof List){
             internalOptions.list = content;
             content = '';
-        }
-
-        if (internalOptions.sendMediaAsSticker && internalOptions.attachment) {
-            internalOptions.attachment = 
-                await Util.formatToWebpSticker(internalOptions.attachment, {
-                    name: options.stickerName,
-                    author: options.stickerAuthor,
-                    categories: options.stickerCategories
-                });
         }
 
         const newMessage = await this.pupPage.evaluate(async (chatId, message, options, sendSeen) => {
