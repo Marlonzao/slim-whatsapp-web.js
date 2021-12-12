@@ -1,7 +1,7 @@
 {
-  "name": "whatsapp-web.js",
+  "name": "slim-whatsapp-web.js",
   "version": "1.15.3",
-  "description": "Library for interacting with the WhatsApp Web API ",
+  "description": "Slim version of a library for interacting with the WhatsApp Web API ",
   "main": "./index.js",
   "typings": "./index.d.ts",
   "scripts": {
@@ -11,22 +11,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pedroslopez/whatsapp-web.js.git"
+    "url": "git+https://github.com/Marlonzao/slim-whatsapp-web.js.git"
   },
   "keywords": [
     "whatsapp",
     "whatsapp-web",
+    "slim",
+    "slim-whatsapp-web",
     "api",
     "bot",
     "client",
     "node"
   ],
-  "author": "Pedro Lopez",
+  "author": "Marlon de Oliveira",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/pedroslopez/whatsapp-web.js/issues"
+    "url": "https://github.com/Marlonzao/slim-whatsapp-web.js/issues"
   },
-  "homepage": "https://wwebjs.dev/",
   "dependencies": {
     "@pedroslopez/moduleraid": "^5.0.2",
     "fluent-ffmpeg": "^2.1.2",
